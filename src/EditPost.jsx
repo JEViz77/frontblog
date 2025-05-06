@@ -63,17 +63,41 @@ function EditPost() {
 
   return (
     <div className="container mt-5" style={{ maxWidth: '600px' }}>
+      
+
       <h2 className="mb-4 text-center text-warning">Editar Post</h2>
       <form onSubmit={handleSubmit} className="border p-4 rounded shadow-sm bg-white">
         <div className="mb-3">
-          <input name="titulo" className="form-control form-control-lg" placeholder="Título" value={form.titulo} onChange={handleChange} required />
+          <input
+            name="titulo"
+            className="form-control form-control-lg"
+            placeholder="Título"
+            value={form.titulo}
+            onChange={handleChange}
+            required
+          />
         </div>
         <div className="mb-3">
-          <textarea name="descripcion" className="form-control form-control-lg" placeholder="Descripción" value={form.descripcion} onChange={handleChange} required rows={4} />
+          <textarea
+            name="descripcion"
+            className="form-control form-control-lg"
+            placeholder="Descripción"
+            value={form.descripcion}
+            onChange={handleChange}
+            required
+            rows={4}
+          />
         </div>
         <button type="submit" className="btn btn-warning btn-lg w-100">Actualizar Post</button>
       </form>
-      {message && <div className="alert alert-info mt-3 text-center">{message}</div>}
+      {message && (
+        <div className="alert alert-info mt-3 text-center">{message}</div>
+      )}
+    <div className="text-center mt-4">
+        <button className="btn btn-secondary" onClick={() => navigate(-1)}>
+          ← Volver
+        </button>
+      </div>
     </div>
   );
 }
