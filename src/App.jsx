@@ -2,13 +2,17 @@ import { useState, useEffect } from 'react';
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Register from './Register';
 import Login from './Login';
 import Editor from './Editor';
 import AddPost from './AddPost';
 import EditPost from './EditPost';
 import PostDetail from './PostDetail';
+import { API_BASE_URL } from './config';
+import { Link } from 'react-router-dom';
+
+
 
 function App() {
   const [count, setCount] = useState(0);
@@ -19,7 +23,7 @@ function App() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await fetch('http://localhost:3001/api/posts/');
+        const res = await fetch(`${API_BASE_URL}/posts/`);
         if (!res.ok) throw new Error('Error al obtener posts');
         const data = await res.json();
         setPosts(data);
@@ -33,7 +37,7 @@ function App() {
   }, []);
 
   return (
-    <Router basename="/blog">
+    <Router>
       <Routes>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />

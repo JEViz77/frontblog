@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from './config';
 
 function AddPost() {
   const [form, setForm] = useState({ titulo: '', descripcion: '' });
@@ -18,7 +19,7 @@ function AddPost() {
       return;
     }
     try {
-      const res = await fetch('http://localhost:3001/api/posts', {
+      await fetch(`${API_BASE_URL}/posts`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

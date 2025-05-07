@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Navbar from './Navbar'; // Asegúrate de que la ruta sea correcta
+import { API_BASE_URL } from './config';
 
 function PostDetail() {
   const { id } = useParams();
@@ -11,7 +12,7 @@ function PostDetail() {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const res = await fetch(`http://localhost:3001/api/posts/${id}`);
+        const res = await fetch(`${API_BASE_URL}/posts/${id}`);
         if (!res.ok) throw new Error('Error al obtener el post');
         const data = await res.json();
         setPost(data);

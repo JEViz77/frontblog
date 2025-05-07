@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { API_BASE_URL } from './config';
 
 function EditPost() {
   const [form, setForm] = useState({ titulo: '', descripcion: '' });
@@ -16,7 +17,7 @@ function EditPost() {
     }
     const fetchPost = async () => {
       try {
-        const res = await fetch(`http://localhost:3001/api/posts/${id}`, {
+        await fetch(`${API_BASE_URL}/posts/${id}`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         if (!res.ok) throw new Error('No se pudo cargar el post');
@@ -39,7 +40,7 @@ function EditPost() {
     e.preventDefault();
     const token = localStorage.getItem('token');
     try {
-      const res = await fetch(`http://localhost:3001/api/posts/${id}`, {
+      await fetch(`${API_BASE_URL}/posts/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
